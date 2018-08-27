@@ -1,0 +1,88 @@
+/******
+ * Common
+ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    position: relative;
+    background: #3e3e3e;
+    color: #f9f9f9;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+li a {
+    color: #f9f9f9;
+    text-decoration: none;
+}
+
+/******
+ * Header
+ */
+header {
+    position: relative;
+    background: #232323;
+    color: aliceblue;
+    height: 50px;
+}
+
+header img {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    width: 25px;
+    height: 25px;
+}
+
+header ul {
+    position: absolute;
+    top: 12px;
+    right: 1em;
+}
+
+header li {
+    display: inline-block;
+    list-style: none;
+}
+
+header a {
+    color: #f9f9f9;
+}
+
+/******
+ * Section
+ */
+section {
+    margin: -50px 0;
+    min-height: 100%;
+}
+
+.main {
+    padding: 1em;
+}
+
+.top,
+.bottom {
+    padding-bottom: 50px;
+}
+
+.repositories li {
+    list-style: none;
+}
+
+/******
+ * Footer
+ */
+footer {
+    position: relative;
+    background: #232323;
+    color: aliceblue;
+    height: 50px;
+}

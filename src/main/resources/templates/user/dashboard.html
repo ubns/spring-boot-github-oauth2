@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="common/head :: head">
+</head>
+<body>
+<header>
+    <h1><img th:src="@{/img/icon.svg}"/></h1>
+    <ul>
+        <li sec:authentication="name"></li>
+    </ul>
+</header>
+
+<section>
+    <div class="top"></div>
+
+    <div class="main">
+        Repositories
+
+        <ul class="repositories">
+            <li th:each="repo : ${repos}" th:object="${repo}">
+                <a th:text="*{name}" th:href="*{html_url}"></a>
+                <a th:text="*{language}"></a>
+             </li>
+        </ul>
+    </div>
+
+    <div class="bottom"></div>
+</section>
+
+<footer>
+    @2018 dev
+    <ul>
+        <li>
+            <form action="/logout" method="get">
+                <input type="submit" value="Logout" />
+            </form>
+        </li>
+    </ul>
+</footer>
+</body>
+</html>
