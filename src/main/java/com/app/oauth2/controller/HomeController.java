@@ -2,7 +2,10 @@ package com.app.oauth2.controller;
 
 import com.app.oauth2.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.security.Principal;
 import java.util.Locale;
+import static java.util.Arrays.asList;
 
 @Controller
 public class HomeController {
@@ -58,11 +62,13 @@ public class HomeController {
             return "redirect:/";
         }
 
+        auth2RestTemplate.setMessageConverters(asList(new MappingJackson2HttpMessageConverter()));
+
         // リポジトリ情報取得
-        URI uri = UriComponentsBuilder.fromUriString("https://api.github.com/users/" + userName + "/repos").build().toUri();
+        URI uri = UriComponentsBuilder.fromUriString("https://api.github.com/user/repos").build().toUri();
+        Repository[] list = auth2RestTemplate.getForEntity(uri, Repository[].class).getBody();
 
-
-        model.addAttribute("repos", auth2RestTemplate.getForEntity(uri, Repository[].class).getBody());
+        model.addAttribute("repos", list);
         model.addAttribute("title", ms.getMessage("page.title.dashboard", new String[]{name}, Locale.JAPAN));
         return "user/dashboard";
     }

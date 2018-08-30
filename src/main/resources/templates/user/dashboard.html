@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head th:include="common/head :: head">
 </head>
 <body>
@@ -17,12 +18,28 @@
     <div class="main">
         Repositories
 
-        <ul class="repositories">
-            <li th:each="repo : ${repos}" th:object="${repo}">
-                <a th:text="*{name}" th:href="*{html_url}"></a>
-                <a th:text="*{language}"></a>
-             </li>
-        </ul>
+        <table class="repositories" border="1">
+            <tr>
+               <th>name</th>
+                <th>language</th>
+                <th>private</th>
+                <th>description</th>
+                <th>size</th>
+                <th>pushed at</th>
+                <th>created at</th>
+                <th>updated at</th>
+            </tr>
+            <tr th:each="repo : ${repos}" th:object="${repo}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{language}"></td>
+                <td th:text="*{priv}"></td>
+                <td th:text="*{description}"></td>
+                <td th:text="*{size}"></td>
+                <td th:text="${#dates.format(repo.pushedAt,'yyyy/MM/dd')}"></td>
+                <td th:text="${#dates.format(repo.createdAt,'yyyy/MM/dd')}"></td>
+                <td th:text="${#dates.format(repo.updatedAt,'yyyy/MM/dd')}"></td>
+             </tr>
+        </table>
     </div>
 
     <div class="bottom"></div>

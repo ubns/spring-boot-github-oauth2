@@ -9,7 +9,7 @@
     <h1>Listing Repositories owned <span sec:authentication="name"></span></h1>
     <ul>
         <li th:each="repo : ${repos}" th:object="${repo}">
-            <a th:text="*{name}" th:href="*{htmlUrl}"></a>
+            <a th:text="*{name}" th:href="*{html_url}"></a>
         </li>
     </ul>
 </body>

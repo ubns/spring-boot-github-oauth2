@@ -39,8 +39,6 @@ public class Oauth2Application extends WebSecurityConfigurerAdapter {
 				.and().formLogin()
 				.defaultSuccessUrl("/").permitAll()
 				.and().logout().logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
-		http
-				.addFilterAfter(new CsrfCookieFilter(), CsrfFilter.class);
 	}
 
 	@Override
