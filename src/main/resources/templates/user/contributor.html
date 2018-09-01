@@ -18,9 +18,9 @@
     <div class="main">
         Repositories
 
-        <table class="repositories">
+        <table class="repositories" border="1">
             <tr>
-               <th>name</th>
+                <th>name</th>
                 <th>language</th>
                 <th>private</th>
                 <th>description</th>
@@ -28,9 +28,10 @@
                 <th>pushed at</th>
                 <th>created at</th>
                 <th>updated at</th>
+                <th>login</th>
             </tr>
             <tr th:each="repo : ${repos}" th:object="${repo}">
-                <td><a th:href="@{/contributor/} + ${repo.owner.login} + '/' + ${repo.name}" th:text="${repo.name}"></a></td>
+                <td th:text="*{name}"></td>
                 <td th:text="*{language}"></td>
                 <td th:text="*{priv}"></td>
                 <td th:text="*{description}"></td>
@@ -38,7 +39,8 @@
                 <td th:text="${#dates.format(repo.pushedAt,'yyyy/MM/dd')}"></td>
                 <td th:text="${#dates.format(repo.createdAt,'yyyy/MM/dd')}"></td>
                 <td th:text="${#dates.format(repo.updatedAt,'yyyy/MM/dd')}"></td>
-             </tr>
+                <td th:text="${repo.owner.login}"></td>
+            </tr>
         </table>
     </div>
 

@@ -1,29 +1,27 @@
 package com.app.oauth2.repository;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Component
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Repository {
 
     private Long id;
 
-    @JsonProperty()
+    @JsonProperty("node_id")
     private String nodeId;
 
     private String name;
 
     @JsonProperty("full_name")
     private String fullName;
+
+    private User owner;
 
     @JsonProperty("private")
     private String priv;
