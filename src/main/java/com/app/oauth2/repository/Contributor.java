@@ -11,5 +11,5 @@ public class Contributor {
 
     private Long total;
 
-    private Week weeks;
+    private Week[] weeks;
 }
